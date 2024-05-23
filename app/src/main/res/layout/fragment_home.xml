@@ -152,7 +152,7 @@
                 >
                 <include
                     android:id="@+id/tour1"
-                    layout="@layout/hotel_vertical"
+                    layout="@layout/tour_vertical"
                     android:layout_width="0dp"
                     android:layout_columnWeight="1"
                     android:layout_height="wrap_content"
@@ -161,7 +161,7 @@
                     />
                 <include
                     android:id="@+id/tour2"
-                    layout="@layout/hotel_vertical"
+                    layout="@layout/tour_vertical"
                     android:layout_width="0dp"
                     android:layout_columnWeight="1"
                     android:layout_height="wrap_content"
@@ -170,7 +170,7 @@
                     />
                 <include
                     android:id="@+id/tour3"
-                    layout="@layout/hotel_vertical"
+                    layout="@layout/tour_vertical"
                     android:layout_width="0dp"
                     android:layout_columnWeight="1"
                     android:layout_height="wrap_content"
@@ -179,7 +179,7 @@
                     />
                 <include
                     android:id="@+id/tour4"
-                    layout="@layout/hotel_vertical"
+                    layout="@layout/tour_vertical"
                     android:layout_width="0dp"
                     android:layout_columnWeight="1"
                     android:layout_height="wrap_content"
@@ -190,7 +190,7 @@
 
                 <include
                     android:id="@+id/tour3"
-                    layout="@layout/hotel_vertical"
+                    layout="@layout/tour_vertical"
                     android:layout_width="0dp"
                     android:layout_columnWeight="1"
                     android:layout_height="wrap_content"
@@ -199,7 +199,7 @@
                     />
                 <include
                     android:id="@+id/tour4"
-                    layout="@layout/hotel_vertical"
+                    layout="@layout/tour_vertical"
                     android:layout_width="0dp"
                     android:layout_columnWeight="1"
                     android:layout_height="wrap_content"
