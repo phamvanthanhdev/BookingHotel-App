@@ -1,0 +1,7 @@
+[33mfa668cf[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m)[m HEAD@{0}: reset: moving to fa668cf47f40275ed7215bc5e92977dba5c1bee1
+[33mcbb7f63[m HEAD@{1}: commit: second commit
+[33mfa668cf[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m)[m HEAD@{2}: reset: moving to fa668cf47f40275ed7215bc5e92977dba5c1bee1
+[33m336c359[m[33m ([m[1;31morigin/main[m[33m)[m HEAD@{3}: revert: Revert "second commit"
+[33mfa668cf[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m)[m HEAD@{4}: commit: second commit
+[33m0f985b0[m HEAD@{5}: Branch: renamed refs/heads/master to refs/heads/main
+[33m0f985b0[m HEAD@{7}: commit (initial): first commit
