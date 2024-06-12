@@ -21,7 +21,7 @@
             app:cardElevation="4dp"
             app:cardBackgroundColor="@color/white">
             <ImageView
-                android:id="@+id/imageView"
+                android:id="@+id/imageHotel"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="fitXY" />
@@ -33,7 +33,7 @@
             android:paddingTop="5dp"
             android:paddingBottom="10dp">
             <TextView
-                android:id="@+id/text_name"
+                android:id="@+id/textHotelName"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
@@ -56,6 +56,7 @@
                     android:src="@drawable/img_star1"
                     android:layout_gravity="center_vertical"/>
                 <TextView
+                    android:id="@+id/textHotelRating"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:text="4.5"
@@ -76,7 +77,7 @@
                 android:layout_height="20dp"
                 android:src="@drawable/img_location" />
             <TextView
-                android:id="@+id/text_location"
+                android:id="@+id/textHotelCity"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Chỗ mô đó"
@@ -94,7 +95,7 @@
             android:paddingVertical="15dp">
 
             <TextView
-                android:id="@+id/text_price"
+                android:id="@+id/textHotelPrice"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"

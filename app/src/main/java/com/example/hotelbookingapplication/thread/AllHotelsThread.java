@@ -1,14 +1,12 @@
 package com.example.hotelbookingapplication.thread;
 
-import android.graphics.Bitmap;
 import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
-import android.widget.TextView;
 
 import com.example.hotelbookingapplication.api.ApiService;
 import com.example.hotelbookingapplication.model.Hotel;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -17,11 +15,9 @@ import retrofit2.Response;
 
 public class AllHotelsThread extends Thread{
     Handler handler;
-    TextView textView;
 
-    public AllHotelsThread(Handler handler, TextView textView) {
+    public AllHotelsThread(Handler handler) {
         this.handler = handler;
-        this.textView = textView;
     }
 
     @Override
@@ -29,15 +25,15 @@ public class AllHotelsThread extends Thread{
         GetAllHotels(new GetAllHotelsCallback() {
             @Override
             public void getHotelsSuccess(List<Hotel> hotels) {
-                if(hotels != null){
-                    for (Hotel hotel:hotels) {
-                        Log.d("AAA", "Hotel : " + hotel.toString());
-                    }
+                if(hotels != null && !hotels.isEmpty()){
+                    Message message = new Message();
+                    message.obj = hotels;
+                    handler.sendMessage(message);
 
                     handler.post(new Runnable() {
                         @Override
                         public void run() {
-                            textView.setText("Hotel " + hotels.get(0).getName());
+                            // Sau khi lấy hoàn thành get data
                         }
                     });
                 }else {
@@ -73,6 +69,8 @@ public class AllHotelsThread extends Thread{
                                 Log.d("AAA", "Hotels is null! ");
                                 hotelsCallback.getHotelsFailed(new Exception("Hotels is null"));
                             }
+                        }else{
+                            Log.d("AAA", "Hotels error " + response.code());
                         }
                     }
 

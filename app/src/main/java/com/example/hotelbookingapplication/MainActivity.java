@@ -1,225 +1,201 @@
 package com.example.hotelbookingapplication;
 
-import androidx.appcompat.app.AppCompatActivity;
-
+import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
-import android.util.Base64;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.GridLayout;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import com.example.hotelbookingapplication.api.ApiService;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.hotelbookingapplication.adapter.HotelVerticalAdapter;
 import com.example.hotelbookingapplication.model.Hotel;
 import com.example.hotelbookingapplication.thread.AllHotelsThread;
+import com.example.hotelbookingapplication.untils.Common;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationBarView;
 
+import java.util.ArrayList;
 import java.util.List;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
+import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
     private Handler mHandler;
-    private Handler mHandler1, mHandler2;
     private static final int MSG_UPDATE_NUMBER = 100;
     private static final int MSG_UPDATE_NUMBER_DONE = 101;
-    private static final int MSG_UPDATE_NUMBER_1 = 102;
-    private static final int MSG_UPDATE_NUMBER_DONE_1 = 103;
-
-    private TextView mTextNumber;
-    private TextView mTextNumber1;
-    private boolean mIsCounting;
-    private boolean mIsCounting1;
+    List<Hotel> hotelList = new ArrayList<>();
+    private ImageView imgHotelSuggest;
+    private TextView txtHotelNameSuggest, txtHotelPriceSuggest, txtHotelCitySuggest;
+    private GridLayout gridLayoutHotels;
     private ProgressBar progressBar;
-    private ImageView imgView;
+    private BottomNavigationView bottomNavigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //abcd
 
         initViews();
-        /*listenerHandler();
-        listenerHandler1();*/
+
+        //Khai báo một Handler chờ nhận dữ liệu từ Thread và xử lý UI
+        listenerHandlerGetHotels();
+
+        setBottomNavView();
     }
 
-    private void GetAllHotelsFromServer() {
-        ApiService
-                .apiService
-                .getAllHotels()
-                .enqueue(new Callback<List<Hotel>>() {
-                    @Override
-                    public void onResponse(Call<List<Hotel>> call, Response<List<Hotel>> response) {
-                        if(response.isSuccessful()){
-                            List<Hotel> hotelList = response.body();
-                            for (Hotel hotel:hotelList) {
-                                Log.d("AAA", "Hotel : " + hotel.toString());
-                            }
-                            Bitmap bitmap = decodeBase64ToBitmap(hotelList.get(0).getPhoto());
-                            imgView.setImageBitmap(bitmap);
-                        }
-                    }
-
-                    @Override
-                    public void onFailure(Call<List<Hotel>> call, Throwable throwable) {
-                        Log.d("AAA", "Get all hotels failed! " + throwable.getMessage());
-                    }
-                });
-    }
-
-    public Bitmap decodeBase64ToBitmap(String base64Str) throws IllegalArgumentException {
-        byte[] decodedBytes = Base64.decode(base64Str, Base64.DEFAULT);
-        return BitmapFactory.decodeByteArray(decodedBytes, 0, decodedBytes.length);
-    }
-
-    private void initViews() {
-        imgView = findViewById(R.id.imageView);
-        progressBar = findViewById(R.id.progressBar);
-        mTextNumber = findViewById(R.id.text_number);
-        mTextNumber1 = findViewById(R.id.text_number1);
-        findViewById(R.id.button_count).setOnClickListener(new View.OnClickListener() {
+    private void setBottomNavView() {
+        bottomNavigationView = findViewById(R.id.bottomNavigationView);
+        bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
-            public void onClick(View v) {
-                if (!mIsCounting) {
-                    //GetAllHotelsFromServer();
-                    //countNumbers();
-                    //countNumbers1();
-                    //countNumbers2();
-                    mHandler = new Handler(Looper.getMainLooper());
-                    new AllHotelsThread(mHandler, mTextNumber).start();
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                if(item.getItemId() == R.id.btnMenuHome){
+                    startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                    return true;
                 }
+                if(item.getItemId() == R.id.btnMenuOrders){
+                    startActivity(new Intent(getApplicationContext(), OrdersActivity.class));
+                    return true;
+                }
+                if(item.getItemId() == R.id.btnMenuProfile){
+                    startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
+                    return true;
+                }
+                if(item.getItemId() == R.id.btnMenuLogout){
+                    startActivity(new Intent(getApplicationContext(), SignInActivity.class));
+                    return true;
+                }
+
+                return false;
             }
         });
     }
 
-    private void countNumbers2() {
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                for (int i = 0; i <= 10; i++) {
-                    /*Message message = new Message();
-                    message.what = MSG_UPDATE_NUMBER;
-                    message.arg1 = i;*/
-                    //mHandler.sendMessage(message);
-                    //progressBar.setIndeterminate(true);
-                    try {
-                        Thread.sleep(1000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }
-                mHandler2 = new Handler(Looper.getMainLooper());
-                mHandler2.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        progressBar.setVisibility(View.GONE);
-                    }
-                });
-                //mHandler.sendEmptyMessage(MSG_UPDATE_NUMBER_DONE);
-            }
-        }).start();
+
+    @Override
+    protected void onStart() {
+        //Start Thread lấy dữ liệu all hotels từ Server
+        getAllHotels();
+
+        super.onStart();
     }
 
-    private void countNumbers() {
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                for (int i = 0; i <= 10; i++) {
-                    Message message = new Message();
-                    message.what = MSG_UPDATE_NUMBER;
-                    message.arg1 = i;
-                    mHandler.sendMessage(message);
-                    try {
-                        Thread.sleep(1000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }
-                mHandler.sendEmptyMessage(MSG_UPDATE_NUMBER_DONE);
-            }
-        }).start();
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mHandler.removeCallbacks(mRunnableConfig);
     }
 
-    private void countNumbers1() {
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                for (int i = 0; i <= 20; i++) {
-                    Message message = new Message();
-                    message.what = MSG_UPDATE_NUMBER_1;
-                    message.arg1 = i;
-                    mHandler1.sendMessage(message);
-                    try {
-                        Thread.sleep(500);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }
-                mHandler1.sendEmptyMessage(MSG_UPDATE_NUMBER_DONE_1);
-                mHandler1.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        mTextNumber1.setText("Done!Done");
-                    }
-                });
-            }
-        }).start();
+    @Override
+    protected void onPause() {
+        super.onPause();
+        mHandler.removeCallbacks(mRunnableConfig);
     }
 
-    /*private void countNumbersWithThread() {
-        CountNumberThread countNumberThread = new CountNumberThread(mHandler);
-        countNumberThread.start();
-    }*/
+    private void setViewHotelSuggest(Hotel hotelSuggest) {
+        Bitmap bitmap = Common.decodeBase64ToBitmap(hotelSuggest.getPhoto());
+        imgHotelSuggest.setImageBitmap(bitmap);
+        txtHotelNameSuggest.setText(hotelSuggest.getName());
+        txtHotelCitySuggest.setText(hotelSuggest.getCity());
+        txtHotelPriceSuggest.setText(Common.convertCurrencyVietnamese(hotelSuggest.getPrice()) + "đ/đêm");
+    }
+
+    private void getAllHotels(){
+        new AllHotelsThread(mHandler).start();
+    }
+
+    // Mỗi 10s hàm run được thực thi 1 lần
+    protected Runnable mRunnableConfig = new Runnable() {
+        @Override
+        public void run() {
+            runOnUiThread(() -> {
+                Hotel hotelSuggest = getRandomHotelSuggest();
+                setViewHotelSuggest(hotelSuggest);
+            });
+            mHandler.postDelayed(this, 10*1000);
+        }
+    };
+
+
+    private void initViews() {
+        imgHotelSuggest = findViewById(R.id.imageHotelSuggest);
+        txtHotelNameSuggest = findViewById(R.id.textHotelNameSuggest);
+        txtHotelPriceSuggest = findViewById(R.id.textHotelPriceSuggest);
+        txtHotelCitySuggest = findViewById(R.id.textHotelCitySuggest);
+        gridLayoutHotels = findViewById(R.id.gridLayoutHotels);
+        progressBar = findViewById(R.id.progressBar);
+    }
+
+    private Hotel getRandomHotelSuggest(){
+        Random random =new Random();
+        return hotelList.get(random.nextInt(hotelList.size()));
+    }
 
     //UI Thread
     //Lắng nghe message trả về từ handler
-    private void listenerHandler() {
+    private void listenerHandlerGetHotels() {
         mHandler = new Handler(Looper.getMainLooper()) {
             @Override
             public void handleMessage(Message msg) {
-                switch (msg.what) {
-                    case MSG_UPDATE_NUMBER:
-                        mIsCounting = true;
-                        mTextNumber.setText(String.valueOf(msg.arg1));
-                        break;
-                    case MSG_UPDATE_NUMBER_DONE:
-                        mTextNumber.setText("Done!");
-                        mIsCounting = false;
-                        break;
-                    default:
-                        break;
+                if(msg.obj != null) {
+                    progressBar.setVisibility(View.GONE);
+                    hotelList = (List<Hotel>) msg.obj;
+                    if (hotelList.isEmpty()) {
+                        for (Hotel hotel : hotelList) {
+                            Log.d("AAA", "Hotel : " + hotel.toString());
+                        }
+                    }
+
+                    //Runnable start
+                    mRunnableConfig.run();
+                    setHotelRecycler();
                 }
             }
         };
     }
 
-    private void listenerHandler1() {
-        mHandler1 = new Handler(Looper.getMainLooper()) {
+    //Thêm 1 include Hotel vào gridLayout
+    private void addViewGroupHotel(){
+        GridLayout.LayoutParams layoutParams = new GridLayout.LayoutParams();
+        layoutParams.width = 0;
+        layoutParams.height = GridLayout.LayoutParams.WRAP_CONTENT;
+        layoutParams.columnSpec = GridLayout.spec(GridLayout.UNDEFINED, 1f);
+        layoutParams.setMargins(0, 0, 10, 10);
+
+        ViewGroup viewGroup = new ViewGroup(this) {
             @Override
-            public void handleMessage(Message msg) {
-                switch (msg.what) {
-                    case MSG_UPDATE_NUMBER_1:
-                        //mIsCounting = true;
-                        mTextNumber1.setText(String.valueOf(msg.arg1));
-                        break;
-                    case MSG_UPDATE_NUMBER_DONE_1:
-                        mTextNumber1.setText("Done!");
-                        //mIsCounting = false;
-                        break;
-                    default:
-                        break;
-                }
+            protected void onLayout(boolean changed, int l, int t, int r, int b) {
+                //Lấy view từ Layout tĩnh trong folder layout
+
             }
         };
+
+        viewGroup.setLayoutParams(layoutParams);
+        gridLayoutHotels.addView(viewGroup);
     }
+
+
+    private void setHotelRecycler(){
+        RecyclerView rvHotels = findViewById(R.id.rvHotels);
+        RecyclerView.LayoutManager layoutManager = new GridLayoutManager(this, 2);
+        rvHotels.setLayoutManager(layoutManager);
+        HotelVerticalAdapter hotelVerticalAdapter = new HotelVerticalAdapter(this, hotelList);
+        rvHotels.setAdapter(hotelVerticalAdapter);
+    }
+
+
 
 }

@@ -1,13 +1,12 @@
 package com.example.hotelbookingapplication;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.hotelbookingapplication.asynctask.AllHotelsAsyncTask;
 

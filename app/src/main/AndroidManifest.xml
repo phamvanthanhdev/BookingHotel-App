@@ -17,11 +17,14 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".fragment.HomeFragment"
+            android:name=".ProfileActivity"
             android:exported="false" />
         <activity
-            android:name=".SearchHotelActivity"
-            android:exported="true">
+            android:name=".SignUpActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SignInActivity"
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -29,11 +32,52 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".BookedDetailsActivity"
+            android:exported="true"
+            android:launchMode="singleTask">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="app"
+                    android:scheme="demozpdk" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".BookingFailedActivity"
+            android:exported="false" />
+        <activity
+            android:name=".OrdersActivity"
+            android:exported="true">
+
+        </activity>
+        <activity
+            android:name=".BookSuccessActivity"
+            android:exported="false" />
+        <activity
+            android:name=".BookingActivity"
+            android:exported="false" />
+        <activity
+            android:name=".RoomsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".HotelDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".fragment.HomeFragment"
+            android:exported="false" />
+        <activity
+            android:name=".SearchHotelActivity"
+            android:exported="false" />
+        <activity
             android:name=".AsyncTaskActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
-            android:exported="false"></activity>
+            android:exported="false" />
     </application>
 
 </manifest>

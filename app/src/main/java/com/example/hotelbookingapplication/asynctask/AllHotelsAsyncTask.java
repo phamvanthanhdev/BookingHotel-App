@@ -6,7 +6,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.hotelbookingapplication.api.ApiService;
 import com.example.hotelbookingapplication.model.Hotel;

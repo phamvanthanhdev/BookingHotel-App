@@ -1,0 +1,515 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F2F2F2">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout android:id="@+id/linearColumnarrowup"
+            android:layout_gravity="top|center"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:paddingHorizontal="10dp">
+            <androidx.appcompat.widget.Toolbar android:gravity="start"
+                android:id="@+id/toolbarToolbar"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent" app:contentInsetStart="0dp">
+                <LinearLayout android:id="@+id/linearRowarrowup"
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent" android:orientation="horizontal">
+
+                    <FrameLayout
+                        android:id="@+id/frameStackarrowup"
+                        style="@style/groupStylewhite_A700_66cornerRadius"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.45"
+                        android:backgroundTint="#00FFFFFF">
+
+                        <androidx.appcompat.widget.AppCompatImageButton
+                            android:id="@+id/backBtnTourDetails"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="start|center_vertical"
+                            android:backgroundTint="#00FFFFFF"
+                            android:scaleType="fitXY"
+                            android:src="@drawable/img_arrowup"
+                            android:scaleY="2"/>
+                    </FrameLayout>
+                    <TextView android:ellipsize="end"
+                        android:id="@+id/txtChitittour"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:singleLine="true"
+                        android:text="Thông tin đặt phòng"
+                        style="@style/txtInterbold16"/>
+                </LinearLayout>
+            </androidx.appcompat.widget.Toolbar>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Thông tin đặt phòng"
+                android:textSize="22dp"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:fontFamily="@font/inter"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#A8A8A8" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Thông tin phòng và khách sạn"
+                android:textSize="18dp"
+                android:textColor="@color/black"
+                android:textStyle="italic"
+                android:fontFamily="@font/inter"
+                android:layout_marginTop="10dp"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="10dp">
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+                        <TextView
+                            android:id="@+id/textRoomType"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Biển mỹ khê"
+                            android:textColor="@color/black"
+                            android:textSize="22sp"
+                            android:fontFamily="@font/intersemibold"/>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+                            <ImageView
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:src="@drawable/home" />
+                            <TextView
+                                android:id="@+id/textHotelName"
+                                android:lines="1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Chỗ mô đó"
+                                android:textSize="15dp"
+                                android:fontFamily="@font/inter"
+                                android:layout_marginStart="5dp"
+                                android:textColor="@color/gray_700"/>
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_marginTop="5dp">
+                            <ImageView
+                                android:layout_width="25dp"
+                                android:layout_height="25dp"
+                                android:src="@drawable/img_location" />
+                            <TextView
+                                android:id="@+id/textHotelAddress"
+                                android:lines="1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Chỗ mô đó"
+                                android:textSize="17dp"
+                                android:fontFamily="@font/inter"
+                                android:layout_marginStart="5dp"
+                                android:textColor="@color/gray_700"/>
+                        </LinearLayout>
+                    </LinearLayout>
+                    <androidx.cardview.widget.CardView
+                        android:layout_weight="0.5"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        app:cardCornerRadius="20dp"
+                        >
+                        <ImageView
+                            android:id="@+id/imageRoom"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="80dp"
+                            android:scaleType="fitXY" />
+                    </androidx.cardview.widget.CardView>
+                </LinearLayout>
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#A8A8A8"
+                android:layout_marginTop="15dp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Thông tin khách hàng"
+                android:textSize="18dp"
+                android:textColor="@color/black"
+                android:textStyle="italic"
+                android:fontFamily="@font/inter"
+                android:layout_marginTop="10dp"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"
+                    android:text="Tên khách hàng:"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/inter"
+                    android:textSize="18dp"/>
+                <TextView
+                    android:id="@+id/textGuestFullname"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:text="Phong"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/inter"
+                    android:textSize="18dp"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"
+                    android:text="Số điện thoại:"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/inter"
+                    android:textSize="18dp"/>
+                <TextView
+                    android:id="@+id/textGuestPhoneNumber"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:text="0123458788"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/inter"
+                    android:textSize="18dp"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"
+                    android:text="Email:"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/inter"
+                    android:textSize="18dp"/>
+                <TextView
+                    android:id="@+id/textGuestEmail"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:text="user@gmail.com"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/inter"
+                    android:textSize="18dp"/>
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#A8A8A8"
+                android:layout_marginTop="20dp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Chi tiết đặt phòng"
+                android:textSize="18dp"
+                android:textColor="@color/black"
+                android:textStyle="italic"
+                android:fontFamily="@font/inter"
+                android:layout_marginTop="10dp"/>
+            <TextView
+                android:layout_marginTop="10dp"
+                android:id="@+id/textInfomationCode"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Mã đặt phòng: "
+                android:textSize="16dp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/inter"
+                />
+            <TextView
+                android:layout_marginTop="10dp"
+                android:id="@+id/textBookingStatus"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Trạng thái: "
+                android:textSize="16dp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/inter"
+                />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Số người lớn:"
+                android:textSize="18dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textColor="@color/black"
+                android:fontFamily="@font/inter"
+                />
+                <TextView
+                    android:gravity="center"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Số trẻ em:"
+                    android:textSize="18dp"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/inter"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_marginTop="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <LinearLayout
+                    android:layout_marginEnd="5dp"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="horizontal"
+                    android:background="@drawable/quantity">
+
+                    <TextView
+                        android:padding="3dp"
+                        android:id="@+id/textAdults"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:text="1"
+                        android:textColor="@color/black"
+                        android:gravity="center"
+                        android:textSize="18dp"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:layout_marginStart="5dp"
+                    android:orientation="horizontal"
+                    android:background="@drawable/quantity">
+
+                    <TextView
+                        android:padding="3dp"
+                        android:id="@+id/textChildren"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="1"
+                        android:textColor="@color/black"
+                        android:gravity="center"
+                        android:textSize="18dp"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"
+                    android:text="Ngày đặt phòng:"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/inter"
+                    android:textSize="18dp"
+                    android:gravity="center_vertical"/>
+                <TextView
+                    android:id="@+id/textCheckIn"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:text="01/01/2024"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/interbold"
+                    android:textSize="20dp"
+                    android:gravity="center_vertical|end"/>
+                <ImageButton
+                    android:id="@+id/btnSelectCheckIn"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.3"
+                    android:src="@drawable/calendar"
+                    android:backgroundTint="#00FFFFFF"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"
+                    android:text="Ngày trả phòng:"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/inter"
+                    android:textSize="18dp"
+                    android:gravity="center_vertical"/>
+                <TextView
+                    android:id="@+id/textCheckOut"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:text="01/01/2024"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/interbold"
+                    android:textSize="20dp"
+                    android:gravity="center_vertical|end"/>
+                <ImageButton
+                    android:id="@+id/btnSelectCheckOut"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.3"
+                    android:src="@drawable/calendar"
+                    android:backgroundTint="#00FFFFFF"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="5dp">
+                <View
+                    android:layout_width="0dp"
+                    android:layout_weight="0.9"
+                    android:layout_height="1dp"
+                    android:background="#00A8A8A8" />
+                <View
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="1.5dp"
+                    android:background="#A8A8A8" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"
+                    android:text="Tổng tiền:"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/inter"
+                    android:textSize="18dp"/>
+                <LinearLayout
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:orientation="vertical"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:id="@+id/textTotalPrice"
+                        android:layout_weight="1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="450.000 VNĐ"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/interbold"
+                        android:textSize="21dp"
+                        android:layout_gravity="end"
+                        android:gravity="end"/>
+
+                </LinearLayout>
+            </LinearLayout>
+            <TextView
+                android:id="@+id/textNote"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Lưu ý tới khách sạn:"
+                android:textColor="@color/black"
+                android:textSize="18dp"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/inter"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"
+                    android:text="Thanh toán:"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/inter"
+                    android:textSize="18dp"/>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="horizontal"
+                    android:gravity="end">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="Thanh toán tiền mặt"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/inter"
+                        android:layout_marginStart="2dp"
+                        android:textSize="20dp"
+                        android:gravity="end"/>
+                </LinearLayout>
+            </LinearLayout>
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnCancelBooking"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:background="@drawable/bg_btn_search"
+                android:text="Hủy đặt phòng"
+                android:layout_gravity="bottom"
+                android:textColor="@color/white" />
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnPayment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/rectangle_bg_cyan_700_radius_10"
+                android:text="Thanh toán ngay"
+                android:layout_gravity="bottom"
+                android:layout_marginBottom="10dp"
+                android:textColor="@color/white" />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

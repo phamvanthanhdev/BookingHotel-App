@@ -3,7 +3,6 @@ package com.example.hotelbookingapplication.thread;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
-import android.widget.AutoCompleteTextView;
 
 import com.example.hotelbookingapplication.api.ApiService;
 

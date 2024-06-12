@@ -1,8 +1,5 @@
 package com.example.hotelbookingapplication;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.os.Handler;
@@ -12,7 +9,9 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.DatePicker;
-import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.hotelbookingapplication.thread.GetLocationsThread;
 import com.google.android.material.textfield.TextInputEditText;
